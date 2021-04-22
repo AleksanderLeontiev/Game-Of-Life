@@ -4,11 +4,8 @@ export const createField = (
   sizeY: number,
   template?: number[][]
 ): number[][] => {
-  let field;
-  if (!template) {
-    field = new Array(sizeY).fill(0).map(() => new Array(sizeX).fill(0));
-  } else {
-    field = template;
-  }
+  let field = Array.from({ length: sizeY }).map(() =>
+      Array.from({ length: sizeX }).fill(0)
+  );
   return field;
 };

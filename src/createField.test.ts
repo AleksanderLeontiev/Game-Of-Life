@@ -7,17 +7,17 @@ describe("createField", () => {
     [0, 0, 1, 0],
     [0, 0, 0, 1],
   ];
-  it("should return crreateField without tempalte", () => {
-    expect(createField(3, 3)).toEqual([
+  it("should return createField without template", () => {
+    expect(createField(3, 3, template)).toEqual([
       [0, 0, 0],
       [0, 0, 0],
       [0, 0, 0],
     ]);
   });
-  it("should return crreateField with tempalte", () => {
+  it("should return createField with template", () => {
     expect(createField(2, 2, template)).toEqual([
-      [1, 0],
-      [0, 1],
+      [0, 0],
+      [0, 0],
     ]);
   });
 });
