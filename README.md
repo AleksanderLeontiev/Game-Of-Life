@@ -1,5 +1,6 @@
-Приложение по игре Жизнь исполненное на TypeScript
-[![codecov](https://codecov.io/gh/AleksanderLeontiev/Game-of-life/branch/main/graph/badge.svg?token=VUMB5E2RCD)](https://codecov.io/gh/AleksanderLeontiev/Game-of-life)Реализовано:
+##[![codecov](https://codecov.io/gh/AleksanderLeontiev/Game-of-life/branch/main/graph/badge.svg?token=VUMB5E2RCD)](https://codecov.io/gh/AleksanderLeontiev/Game-of-life)
+
+## Приложение по игре Жизнь исполненное на TypeScript
 
 механизм изменения размеров поля (два input поля (type number)), в тч на лету (при увеличении заполнение мертвыми клетками, при уменьшении просто уничтожения ячеек);
 реализован механизм изменения скорости игры (input type=range);
