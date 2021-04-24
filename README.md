@@ -1,4 +1,4 @@
-##[![codecov](https://codecov.io/gh/AleksanderLeontiev/Game-of-life/branch/main/graph/badge.svg?token=VUMB5E2RCD)](https://codecov.io/gh/AleksanderLeontiev/Game-of-life)
+[![codecov](https://codecov.io/gh/AleksanderLeontiev/Game-of-life/branch/game/graph/badge.svg?token=VUMB5E2RCD)](https://codecov.io/gh/AleksanderLeontiev/Game-of-life)
 
 ## Приложение по игре Жизнь исполненное на TypeScript
 
