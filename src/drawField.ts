@@ -52,9 +52,8 @@ export function drawField(
     const clickedElement = ev.target as Element;
 
     const x = clickedElement.getAttribute("data-x");
-
     const y = clickedElement.getAttribute("data-y");
-    if (Number(x) >= 0 && Number(y) >= 0) {
+    if (Number(x) >= 1 && Number(y) >= 1) {
       onCellClick(Number(x), Number(y));
     }
   });

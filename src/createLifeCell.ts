@@ -13,8 +13,8 @@ import { transformField } from "./transormField";
  * @returns void
  */
 export function createGameOfLife(
-  sizeX = 5,
-  sizeY = 5,
+  sizeX = 1,
+  sizeY = 1,
   htmlElement: HTMLElement
 ): void {
   let gameIsRunning = false;
@@ -27,9 +27,8 @@ export function createGameOfLife(
   // Изменение поля динамически
   htmlEl.innerHTML = `<div class="field-wrapper"></div><button>Start</button></div>
   <input type='range' id='speedRangeSlider' name='speedRangeSlider' min='0' max='900' value='500' step='100'>
-  <input id='numberX' type='number' min='1' max='50' value=${sizeX} step='5'>
-  <input id='numberY' type='number' min='1' max='50' value=${sizeY} step='5'>
-  <button class='butField'>setFieldSize</button>
+  <input id='numberX' type='number' min='1' max='50' value=${sizeX} step='1'>
+  <input id='numberY' type='number' min='1' max='50' value=${sizeY} step='1'>
   <br><br>
  <div>Живая клетка<div style="width:10px;height:10px;border:1px solid #03120b; background: #03120b">
 </div></div>
@@ -105,8 +104,8 @@ export function createGameOfLife(
   }
   const inputX = htmlElement.querySelector("#numberX") as HTMLInputElement;
   const inputY = htmlElement.querySelector("#numberY") as HTMLInputElement;
-  const butField = htmlElement.querySelector(".butField");
-  butField?.addEventListener("click", () => {
+
+  function handler1() {
     sizeInputX = Number(inputX.value);
     sizeInputY = Number(inputY.value);
     if (
@@ -115,12 +114,16 @@ export function createGameOfLife(
       sizeInputY <= 50 &&
       sizeInputX <= 50
     ) {
-      field = createField(sizeInputX, sizeInputY, field);
+      field = createField(sizeInputX, sizeInputY);
       drawField(fieldWrapper, field, cellClickHandler);
     } else {
       alert("Введите число от 1 до 50");
     }
-  });
+  }
+
+  inputX?.addEventListener("click", handler1);
+
+  inputY?.addEventListener("click", handler1);
 
   button.addEventListener("click", () => {
     if (!gameIsRunning) {

@@ -76,6 +76,7 @@ describe("createGameOfLife", () => {
           [0, 0],
         ])})`
       );
+
       onCellClick(0, 0);
       expect(element.querySelector(".field-wrapper")?.innerHTML).toBe(
         `drawField(${JSON.stringify([

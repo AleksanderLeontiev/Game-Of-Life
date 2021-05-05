@@ -4,7 +4,7 @@ import { getNewCellState } from "./getNewCellState";
 
 /**
  * получить новое состояние
- * @param field {number[][]} - состояние поля
+ * @param {number[][]} field  - состояние поля
  * @return number[][] - новое состояние поля
  */
 export function getNextState(field: number[][]): number[][] {
