@@ -14,12 +14,12 @@ export function getNumOfAliveNeighbours(
 ): number {
   let neighbours = 0;
 
-  for (let i = column - 1; i <= column + 1; i ++) {
+  for (let i = column - 1; i <= column + 1; i++) {
     neighbours += Number(getCellState(field, i, row - 1));
     neighbours += Number(getCellState(field, i, row + 1));
   }
-  // neighbours += Number(getCellState(field, column - 1, row));
-  // neighbours += Number(getCellState(field, column + 1, row));
+  neighbours += Number(getCellState(field, column - 1, row));
+  neighbours += Number(getCellState(field, column + 1, row));
 
   return neighbours;
 }

@@ -78,7 +78,7 @@ export function createGameOfLife(
 
     timer = setInterval(() => {
       // перекинуть поле
-      const currentField = JSON.parse(JSON.stringify(field));
+      const currentField = [...field];
       field = getNextState(currentField);
       const nextField = getNextState(field);
       const transformedField = transformField(field, nextField);

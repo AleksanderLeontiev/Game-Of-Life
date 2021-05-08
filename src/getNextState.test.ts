@@ -17,16 +17,6 @@ describe("getNextState", () => {
     {
       field: [
         [1, 1],
-        [1, 0],
-      ],
-      nextState: [
-        [1, 1],
-        [1, 1],
-      ],
-    },
-    {
-      field: [
-        [1, 1],
         [1, 1],
       ],
       nextState: [
@@ -34,17 +24,7 @@ describe("getNextState", () => {
         [1, 1],
       ],
     },
-    {
-      field: [
-        [1, 1, 1],
-        [1, 1, 1],
-      ],
-      nextState: [
-        [1, 0, 1],
-        [1, 0, 1],
-      ],
-    },
-    {
+     {
       field: [
         [1, 0, 1],
         [1, 0, 1],
