@@ -60,9 +60,6 @@
       "pre-commit": "lint-staged"
     }
   },
-  "browser": {
-    "[module-name]": false
-  },
   "lint-staged": {
     "*.js,*.ts": [
       "prettier --write",

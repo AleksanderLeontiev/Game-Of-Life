@@ -1,7 +1,7 @@
 import { drawField } from "./drawField";
 
 describe("drawField", () => {
-  let onCellClick: jest.Mock<unknown>;
+  let onCellClick: jest.Mock;
   let el: HTMLDivElement;
 
   beforeEach(() => {
@@ -49,15 +49,6 @@ describe("drawField", () => {
       }
       cell1.click();
       expect(onCellClick).toHaveBeenCalledWith(1, 2);
-
-      // const cell2 = el.querySelector(
-      //   '.cell[data-x="2"][data-y="0"]'
-      // ) as HTMLElement;
-      // if (!cell2) {
-      //   return;
-      // }
-      // cell2.click();
-      // expect(onCellClick).toHaveBeenCalledWith(2, 0);
     });
 
     it("calls onCellClick only once on multiple drawing", () => {

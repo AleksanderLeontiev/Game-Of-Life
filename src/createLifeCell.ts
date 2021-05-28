@@ -13,8 +13,8 @@ import { transformField } from "./transormField";
  * @returns void
  */
 export function createGameOfLife(
-  sizeX = 1,
-  sizeY = 1,
+  sizeX: number,
+  sizeY: number,
   htmlElement: HTMLElement
 ): void {
   let gameIsRunning = false;
@@ -57,11 +57,18 @@ export function createGameOfLife(
 
   drawField(fieldWrapper, field, cellClickHandler);
 
-  function stopGame() {
-    gameIsRunning = false;
-    button.innerHTML = "Start";
+  // Отрисовать поле заданного размера
+  // При клике по ячейке поля
+  // - поменять его состояние
+  // - перерисовать поле
 
+  function stopGame(massage?: string) {
+    const myMessage = massage || "Игра остановлена";
+    gameIsRunning = false;
+    // - поменять надпись на `start`
+    (button as HTMLButtonElement).innerHTML = "Start";
     clearInterval(timer);
+    alert(myMessage);
   }
   function startGame() {
     // При клике по кнопке старт
@@ -78,7 +85,7 @@ export function createGameOfLife(
 
     timer = setInterval(() => {
       // перекинуть поле
-      const currentField = [...field];
+      const currentField = JSON.parse(JSON.stringify(field));
       field = getNextState(currentField);
       const nextField = getNextState(field);
       const transformedField = transformField(field, nextField);
@@ -86,7 +93,7 @@ export function createGameOfLife(
       drawField(fieldWrapper, transformedField, cellClickHandler);
 
       if (nextField.toString() === currentField.toString()) {
-        stopGame();
+        stopGame("Игра зациклена");
       }
 
       if (!isAlive(field)) {
