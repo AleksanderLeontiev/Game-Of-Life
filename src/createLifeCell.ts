@@ -127,7 +127,6 @@ export function createGameOfLife(
       alert("Введите число от 1 до 50");
     }
   }
-
   inputX?.addEventListener("click", handler1);
 
   inputY?.addEventListener("click", handler1);
