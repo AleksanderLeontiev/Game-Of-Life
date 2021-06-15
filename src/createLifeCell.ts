@@ -12,6 +12,7 @@ import { transformField } from "./transormField";
  * @param htmlElement {HTMLElement} - элемент, в котором будет отрисована игра
  * @returns void
  */
+
 export function createGameOfLife(
   sizeX: number,
   sizeY: number,
@@ -22,23 +23,21 @@ export function createGameOfLife(
   const htmlEl = htmlElement;
   let sizeInputX = sizeX;
   let sizeInputY = sizeY;
-  // Создать блок для поля
-  // Создать кнопку управления игрой
-  // Изменение поля динамически
+
   htmlEl.innerHTML = `<div class="field-wrapper"></div><button>Start</button></div>
   <input type='range' id='speedRangeSlider' name='speedRangeSlider' min='0' max='900' value='500' step='100'>
   <input id='numberX' type='number' min='1' max='50' value=${sizeX} step='1'>
   <input id='numberY' type='number' min='1' max='50' value=${sizeY} step='1'>
-  <br><br>
+  <button class='butField'>fieldSize</button>
+ <br><br>
  <div>Живая клетка<div style="width:10px;height:10px;border:1px solid #03120b; background: #03120b">
 </div></div>
  <div>Мертвая клетка<div style="width:10px;height:10px;border:1px solid #03120b; background: cornsilk">
 </div></div>
  <div>Обреченная на смерть клетка<div style="width:10px;height:10px;border:1px solid #03120b; background: #0000FF">
-</div></div>
-`;
+</div></div>`;
   let speed = 1000;
-  // создать ползунок скорости,кнопку,и само поле
+
   const fieldWrapper = htmlElement.querySelector(
     ".field-wrapper"
   ) as HTMLDivElement;
@@ -47,11 +46,12 @@ export function createGameOfLife(
   const speedRangeSlider = htmlElement.querySelector(
     "#speedRangeSlider"
   ) as HTMLInputElement;
-  // Создать поле заданного размера
-  // createField- ширина и высота ячейки
+
   let field = createField(sizeX, sizeY);
+
   const cellClickHandler = (x: number, y: number) => {
     field[y][x] = Number(!field[y][x]);
+
     drawField(fieldWrapper, field, cellClickHandler);
   };
 
@@ -61,12 +61,11 @@ export function createGameOfLife(
   // При клике по ячейке поля
   // - поменять его состояние
   // - перерисовать поле
-
   function stopGame(massage?: string) {
     const myMessage = massage || "Игра остановлена";
     gameIsRunning = false;
     // - поменять надпись на `start`
-    (button as HTMLButtonElement).innerHTML = "Start";
+    button.innerHTML = "Start";
     clearInterval(timer);
     alert(myMessage);
   }
@@ -82,14 +81,12 @@ export function createGameOfLife(
     // - если живых клеток нет
     //    - остановить таймер
     //    - вывести сообщение
-
     timer = setInterval(() => {
       // перекинуть поле
       const currentField = JSON.parse(JSON.stringify(field));
       field = getNextState(currentField);
       const nextField = getNextState(field);
       const transformedField = transformField(field, nextField);
-
       drawField(fieldWrapper, transformedField, cellClickHandler);
 
       if (nextField.toString() === currentField.toString()) {
@@ -111,25 +108,22 @@ export function createGameOfLife(
   }
   const inputX = htmlElement.querySelector("#numberX") as HTMLInputElement;
   const inputY = htmlElement.querySelector("#numberY") as HTMLInputElement;
-
-  function handler1() {
+  const butField = htmlElement.querySelector(".butField");
+  butField?.addEventListener("click", () => {
     sizeInputX = Number(inputX.value);
     sizeInputY = Number(inputY.value);
     if (
       sizeInputY >= 1 &&
       sizeInputX >= 1 &&
-      sizeInputY <= 50 &&
-      sizeInputX <= 50
+      sizeInputY <= 100 &&
+      sizeInputX <= 100
     ) {
-      field = createField(sizeInputX, sizeInputY);
+      field = createField(sizeInputX, sizeInputY, field);
       drawField(fieldWrapper, field, cellClickHandler);
     } else {
       alert("Введите число от 1 до 50");
     }
-  }
-  inputX?.addEventListener("click", handler1);
-
-  inputY?.addEventListener("click", handler1);
+  });
 
   button.addEventListener("click", () => {
     if (!gameIsRunning) {

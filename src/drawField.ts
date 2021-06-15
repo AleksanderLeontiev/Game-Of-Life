@@ -49,6 +49,7 @@ export function drawField(
   }
 
   tableOnHTML.addEventListener("click", (ev) => {
+    ev.preventDefault();
     const clickedElement = ev.target as HTMLElement;
 
     const x = clickedElement.getAttribute("data-x");

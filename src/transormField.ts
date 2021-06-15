@@ -2,7 +2,7 @@ export const transformField = (
   field: number[][],
   nextGenField: number[][]
 ): number[][] => {
-  const transformedField = [...field];
+  const transformedField = JSON.parse(JSON.stringify(field));
   field.forEach((row, rowIndex) =>
     row.forEach((x, colIndex) => {
       if (

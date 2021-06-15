@@ -1,14 +1,38 @@
 // Создать поле заданного размера и заполнить его
-export const createField = (sizeX: number, sizeY: number): number[][] => {
-  const arrayY: number[][] = [];
-
-  for (let i = 0; i < sizeY; i++) {
-    const arrayX: number[] = [];
-    for (let j = 0; j < sizeX; j++) {
-      arrayX[j] = 0;
-    }
-    arrayY[i] = arrayX;
+export const createField = (
+  sizeX: number,
+  sizeY: number,
+  template?: number[][]
+): number[][] => {
+  let field;
+  if (!template) {
+    field = new Array(sizeY).fill(0).map(() => new Array(sizeX).fill(0));
+  } else {
+    field = template;
   }
-
-  return arrayY;
+  const diffX = Math.abs(sizeX - field[0].length);
+  if (sizeX < field[0].length) {
+    field = field.map((row) => {
+      for (let i = 0; i < diffX; i++) {
+        row.pop();
+      }
+      return row;
+    });
+  }
+  if (sizeX > field[0].length) {
+    field = field.map((row) => {
+      for (let i = 0; i < diffX; i++) {
+        row.push(0);
+      }
+      return row;
+    });
+  }
+  if (sizeY < field.length) {
+    field.length = sizeY;
+  }
+  const diffY = sizeY - field.length;
+  for (let i = 0; i < diffY; i++) {
+    field.push(new Array(sizeX).fill(0));
+  }
+  return field;
 };
